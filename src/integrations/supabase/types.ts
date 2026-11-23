@@ -14,6 +14,204 @@ export type Database = {
   }
   public: {
     Tables: {
+      attendance: {
+        Row: {
+          actor_id: string
+          attendance_day: string | null
+          checked_in_at: string
+          gym_id: string
+          id: string
+          member_id: string
+          method: string
+          override_reason: string | null
+          staff_override: boolean
+          verification_status: string
+        }
+        Insert: {
+          actor_id: string
+          attendance_day?: string | null
+          checked_in_at?: string
+          gym_id: string
+          id?: string
+          member_id: string
+          method: string
+          override_reason?: string | null
+          staff_override?: boolean
+          verification_status?: string
+        }
+        Update: {
+          actor_id?: string
+          attendance_day?: string | null
+          checked_in_at?: string
+          gym_id?: string
+          id?: string
+          member_id?: string
+          method?: string
+          override_reason?: string | null
+          staff_override?: boolean
+          verification_status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attendance_gym_id_fkey"
+            columns: ["gym_id"]
+            isOneToOne: false
+            referencedRelation: "gyms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "attendance_member_id_fkey"
+            columns: ["member_id"]
+            isOneToOne: false
+            referencedRelation: "members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      attendance_attempts: {
+        Row: {
+          accuracy_metres: number | null
+          actor_id: string
+          created_at: string
+          device_id: string | null
+          distance_metres: number | null
+          gym_id: string | null
+          id: string
+          member_id: string | null
+          outcome: string
+          reason: string | null
+          resolved_at: string | null
+          resolved_by: string | null
+          session_id: string | null
+        }
+        Insert: {
+          accuracy_metres?: number | null
+          actor_id: string
+          created_at?: string
+          device_id?: string | null
+          distance_metres?: number | null
+          gym_id?: string | null
+          id?: string
+          member_id?: string | null
+          outcome?: string
+          reason?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          session_id?: string | null
+        }
+        Update: {
+          accuracy_metres?: number | null
+          actor_id?: string
+          created_at?: string
+          device_id?: string | null
+          distance_metres?: number | null
+          gym_id?: string | null
+          id?: string
+          member_id?: string | null
+          outcome?: string
+          reason?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          session_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attendance_attempts_gym_id_fkey"
+            columns: ["gym_id"]
+            isOneToOne: false
+            referencedRelation: "gyms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "attendance_attempts_member_id_fkey"
+            columns: ["member_id"]
+            isOneToOne: false
+            referencedRelation: "members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      attendance_redemptions: {
+        Row: {
+          member_id: string
+          token_id: string
+        }
+        Insert: {
+          member_id: string
+          token_id: string
+        }
+        Update: {
+          member_id?: string
+          token_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attendance_redemptions_member_id_fkey"
+            columns: ["member_id"]
+            isOneToOne: false
+            referencedRelation: "members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "attendance_redemptions_token_id_fkey"
+            columns: ["token_id"]
+            isOneToOne: false
+            referencedRelation: "attendance_tokens"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      attendance_tokens: {
+        Row: {
+          created_at: string
+          expires_at: string
+          gym_id: string
+          id: string
+          issued_by: string
+          kind: string
+          member_id: string | null
+          token_hash: string
+          used_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          expires_at: string
+          gym_id: string
+          id?: string
+          issued_by: string
+          kind: string
+          member_id?: string | null
+          token_hash: string
+          used_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string
+          gym_id?: string
+          id?: string
+          issued_by?: string
+          kind?: string
+          member_id?: string | null
+          token_hash?: string
+          used_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attendance_tokens_gym_id_fkey"
+            columns: ["gym_id"]
+            isOneToOne: false
+            referencedRelation: "gyms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "attendance_tokens_member_id_fkey"
+            columns: ["member_id"]
+            isOneToOne: false
+            referencedRelation: "members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       audit_logs: {
         Row: {
           action: string
@@ -103,6 +301,7 @@ export type Database = {
           id: string
           image_url: string | null
           is_published: boolean
+          is_verified: boolean
           name: string
           sort_order: number
         }
@@ -112,6 +311,7 @@ export type Database = {
           id?: string
           image_url?: string | null
           is_published?: boolean
+          is_verified?: boolean
           name: string
           sort_order?: number
         }
@@ -121,6 +321,7 @@ export type Database = {
           id?: string
           image_url?: string | null
           is_published?: boolean
+          is_verified?: boolean
           name?: string
           sort_order?: number
         }
@@ -169,6 +370,47 @@ export type Database = {
           },
         ]
       }
+      gym_attendance_points: {
+        Row: {
+          gym_id: string
+          id: string
+          latitude: number | null
+          location_verified: boolean
+          longitude: number | null
+          mode: string
+          radius_metres: number
+          updated_at: string
+        }
+        Insert: {
+          gym_id: string
+          id?: string
+          latitude?: number | null
+          location_verified?: boolean
+          longitude?: number | null
+          mode?: string
+          radius_metres?: number
+          updated_at?: string
+        }
+        Update: {
+          gym_id?: string
+          id?: string
+          latitude?: number | null
+          location_verified?: boolean
+          longitude?: number | null
+          mode?: string
+          radius_metres?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gym_attendance_points_gym_id_fkey"
+            columns: ["gym_id"]
+            isOneToOne: true
+            referencedRelation: "gyms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       gym_settings: {
         Row: {
           about_text: string | null
@@ -177,6 +419,7 @@ export type Database = {
           expiring_soon_days: number
           gym_id: string
           hours: Json
+          hours_confirmed: boolean
           trial_slot_capacity: number
           trial_slots: Json
           updated_at: string
@@ -188,6 +431,7 @@ export type Database = {
           expiring_soon_days?: number
           gym_id: string
           hours?: Json
+          hours_confirmed?: boolean
           trial_slot_capacity?: number
           trial_slots?: Json
           updated_at?: string
@@ -199,6 +443,7 @@ export type Database = {
           expiring_soon_days?: number
           gym_id?: string
           hours?: Json
+          hours_confirmed?: boolean
           trial_slot_capacity?: number
           trial_slots?: Json
           updated_at?: string
@@ -311,8 +556,66 @@ export type Database = {
           },
         ]
       }
+      members: {
+        Row: {
+          created_at: string
+          email: string | null
+          ends_on: string
+          full_name: string
+          gym_id: string
+          id: string
+          phone: string
+          plan_id: string | null
+          starts_on: string
+          status: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          ends_on: string
+          full_name: string
+          gym_id: string
+          id?: string
+          phone: string
+          plan_id?: string | null
+          starts_on: string
+          status?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          ends_on?: string
+          full_name?: string
+          gym_id?: string
+          id?: string
+          phone?: string
+          plan_id?: string | null
+          starts_on?: string
+          status?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "members_gym_id_fkey"
+            columns: ["gym_id"]
+            isOneToOne: false
+            referencedRelation: "gyms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "members_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "membership_plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       membership_plans: {
         Row: {
+          amount: number | null
           archived_at: string | null
           category: string
           duration_days: number
@@ -327,6 +630,7 @@ export type Database = {
           sort_order: number
         }
         Insert: {
+          amount?: number | null
           archived_at?: string | null
           category?: string
           duration_days: number
@@ -341,6 +645,7 @@ export type Database = {
           sort_order?: number
         }
         Update: {
+          amount?: number | null
           archived_at?: string | null
           category?: string
           duration_days?: number
@@ -434,6 +739,7 @@ export type Database = {
           id: string
           is_active: boolean
           is_published: boolean
+          photo_path: string | null
           photo_url: string | null
           qualifications: string | null
           specialization: string | null
@@ -446,6 +752,7 @@ export type Database = {
           id?: string
           is_active?: boolean
           is_published?: boolean
+          photo_path?: string | null
           photo_url?: string | null
           qualifications?: string | null
           specialization?: string | null
@@ -458,6 +765,7 @@ export type Database = {
           id?: string
           is_active?: boolean
           is_published?: boolean
+          photo_path?: string | null
           photo_url?: string | null
           qualifications?: string | null
           specialization?: string | null
@@ -602,12 +910,57 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      attendance_home: { Args: { _gym: string }; Returns: Json }
+      configure_attendance_point: {
+        Args: {
+          _gym: string
+          _lat: number
+          _lng: number
+          _mode: string
+          _radius: number
+          _verified: boolean
+        }
+        Returns: Json
+      }
       has_gym_role: {
         Args: {
           _gym: string
           _roles: Database["public"]["Enums"]["app_role"][]
         }
         Returns: boolean
+      }
+      issue_attendance_token: {
+        Args: { _gym: string; _kind: string }
+        Returns: Json
+      }
+      link_member_account: {
+        Args: { _email: string; _gym: string; _member: string }
+        Returns: boolean
+      }
+      redeem_attendance_token: {
+        Args: { _gym: string; _token: string }
+        Returns: Json
+      }
+      request_entrance_checkin: {
+        Args: {
+          _accuracy: number
+          _device: string
+          _gym: string
+          _lat: number
+          _lng: number
+          _location_status: string
+          _payload: string
+        }
+        Returns: Json
+      }
+      resolve_attendance_exception: {
+        Args: {
+          _approve: boolean
+          _attempt: string
+          _gym: string
+          _reason: string
+        }
+        Returns: Json
       }
       submit_public_request: {
         Args: {
