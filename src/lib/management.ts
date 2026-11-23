@@ -1,0 +1,11 @@
+import { z } from "zod";
+
+export const facilitySchema = z.object({ id: z.string().uuid().optional(), gymId: z.string().uuid(), name: z.string().trim().min(2).max(120), description: z.string().max(2000), verified: z.boolean(), published: z.boolean() }).refine(v => !v.published || v.verified, "Verify the facility before publishing");
+export const planSchema = z.object({ id: z.string().uuid().optional(), gymId: z.string().uuid(), name: z.string().trim().min(2).max(120), days: z.number().int().positive().max(3650), amount: z.number().min(0).nullable(), published: z.boolean() }).refine(v => !v.published || v.amount !== null, "Add a price before publishing");
+export const trainerSchema = z.object({ id: z.string().uuid().optional(), gymId: z.string().uuid(), name: z.string().trim().min(2).max(120), specialization: z.string().max(300), qualifications: z.string().max(1000), experience: z.number().int().min(0).max(80).nullable(), photo: z.union([z.literal(""), z.string().url().startsWith("https://")]), photoPath: z.string().max(300).default(""), active: z.boolean(), published: z.boolean() });
+export const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const timeValue = z.union([z.literal(""), z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/)]);
+export const hoursSchema = z.object({ gymId: z.string().uuid(), confirmed: z.boolean(), hours: z.array(z.object({ day: z.string(), closed: z.boolean(), open: timeValue, close: timeValue })).length(7) }).refine(v => v.hours.every((h,i) => h.day === weekDays[i]), "Provide every day in order").refine(v => !v.confirmed || v.hours.every(h => h.closed || (h.open !== "" && h.close !== "")), "Enter every opening and closing time before confirming");
+export const memberSchema = z.object({ id: z.string().uuid().optional(), gymId: z.string().uuid(), name: z.string().trim().min(2).max(120), phone: z.string().regex(/^\+?[0-9]{10,15}$/), email: z.union([z.literal(""), z.string().email()]), plan: z.string().uuid().nullable(), start: z.string().regex(/^\d{4}-\d{2}-\d{2}$/), end: z.string().regex(/^\d{4}-\d{2}-\d{2}$/), status: z.enum(["active", "paused", "cancelled"]) }).refine(v => v.end >= v.start, "End date must follow start date");
+export const MEMBER_QR_SECONDS = 60;
+export const ENTRANCE_QR_SECONDS = 30;
