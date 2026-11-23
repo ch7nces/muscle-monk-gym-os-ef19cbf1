@@ -1,0 +1,100 @@
+[
+  {
+    "capability": "code",
+    "source": "github repository",
+    "outcome": "preserve",
+    "status": "in_progress",
+    "next_action": "Copy compatible TanStack routes, gym components and rules"
+  },
+  {
+    "capability": "schema",
+    "source": "source drizzle migrations",
+    "outcome": "migrate",
+    "status": "pending",
+    "next_action": "Apply all source schema and security rules to Cloud"
+  },
+  {
+    "capability": "records",
+    "source": "no export supplied",
+    "outcome": "migrate",
+    "status": "pending",
+    "next_action": "Supply CSV or JSON application exports"
+  },
+  {
+    "capability": "auth identities",
+    "source": "no user export supplied",
+    "outcome": "migrate",
+    "status": "pending",
+    "next_action": "Supply user IDs and emails; verified email and new password required"
+  },
+  {
+    "capability": "authorization",
+    "source": "gym-scoped user_roles and RLS",
+    "outcome": "preserve",
+    "status": "pending",
+    "next_action": "Apply role policies and verify two-user isolation"
+  },
+  {
+    "capability": "uploaded file bytes",
+    "source": "gym-photos storage; no files export",
+    "outcome": "preserve",
+    "status": "pending",
+    "next_action": "Supply existing uploaded photos"
+  },
+  {
+    "capability": "external providers",
+    "source": "Google and Lovable sign-in; Maps/WhatsApp; no payment/email API call sites",
+    "outcome": "preserve",
+    "status": "pending",
+    "next_action": "Enable existing social methods; preserve external links"
+  },
+  {
+    "capability": "public endpoints",
+    "source": "public contact/trial server functions",
+    "outcome": "preserve",
+    "status": "pending",
+    "next_action": "Verify request saves and staff reads back"
+  },
+  {
+    "capability": "callbacks",
+    "source": "public /auth and /reset-password",
+    "outcome": "migrate",
+    "status": "pending",
+    "next_action": "Verify confirmation and recovery return paths"
+  },
+  {
+    "capability": "webhooks",
+    "source": "none detected in source routes",
+    "outcome": "not_detected",
+    "status": "inspected",
+    "next_action": "None"
+  },
+  {
+    "capability": "schedules",
+    "source": "none detected; generated cron helper unused",
+    "outcome": "not_detected",
+    "status": "inspected",
+    "next_action": "None"
+  },
+  {
+    "capability": "secrets",
+    "source": "only Cloud-managed runtime bindings used",
+    "outcome": "replace",
+    "status": "in_progress",
+    "next_action": "Use target generated Cloud clients; exclude source .env"
+  },
+  {
+    "capability": "cutover",
+    "source": "source production URL not provided",
+    "outcome": "pending",
+    "status": "pending",
+    "next_action": "Publish and validate before switching existing visitors"
+  },
+  {
+    "capability": "verification",
+    "source": "source business tests and browser flows",
+    "outcome": "verify",
+    "status": "pending",
+    "next_action": "Run rule tests and desktop/mobile end-to-end checks"
+  }
+]

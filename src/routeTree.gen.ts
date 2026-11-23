@@ -10,33 +10,212 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FacilitiesRouteImport } from './routes/facilities'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as MembershipsRouteImport } from './routes/memberships'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as StoriesRouteImport } from './routes/stories'
+import { Route as TrainersRouteImport } from './routes/trainers'
+import { Route as TrialRouteImport } from './routes/trial'
+import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacilitiesRoute = FacilitiesRouteImport.update({
+  id: '/facilities',
+  path: '/facilities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembershipsRoute = MembershipsRouteImport.update({
+  id: '/memberships',
+  path: '/memberships',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoriesRoute = StoriesRouteImport.update({
+  id: '/stories',
+  path: '/stories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrainersRoute = TrainersRouteImport.update({
+  id: '/trainers',
+  path: '/trainers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrialRoute = TrialRouteImport.update({
+  id: '/trial',
+  path: '/trial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAccountRoute = AuthenticatedAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/facilities': typeof FacilitiesRoute
+  '/faq': typeof FaqRoute
+  '/memberships': typeof MembershipsRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/reviews': typeof ReviewsRoute
+  '/stories': typeof StoriesRoute
+  '/trainers': typeof TrainersRoute
+  '/trial': typeof TrialRoute
+  '/account': typeof AuthenticatedAccountRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/facilities': typeof FacilitiesRoute
+  '/faq': typeof FaqRoute
+  '/memberships': typeof MembershipsRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/reviews': typeof ReviewsRoute
+  '/stories': typeof StoriesRoute
+  '/trainers': typeof TrainersRoute
+  '/trial': typeof TrialRoute
+  '/account': typeof AuthenticatedAccountRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/facilities': typeof FacilitiesRoute
+  '/faq': typeof FaqRoute
+  '/memberships': typeof MembershipsRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/reviews': typeof ReviewsRoute
+  '/stories': typeof StoriesRoute
+  '/trainers': typeof TrainersRoute
+  '/trial': typeof TrialRoute
+  '/_authenticated/account': typeof AuthenticatedAccountRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/contact'
+    | '/facilities'
+    | '/faq'
+    | '/memberships'
+    | '/reset-password'
+    | '/reviews'
+    | '/stories'
+    | '/trainers'
+    | '/trial'
+    | '/account'
+    | '/dashboard'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/contact'
+    | '/facilities'
+    | '/faq'
+    | '/memberships'
+    | '/reset-password'
+    | '/reviews'
+    | '/stories'
+    | '/trainers'
+    | '/trial'
+    | '/account'
+    | '/dashboard'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/about'
+    | '/auth'
+    | '/contact'
+    | '/facilities'
+    | '/faq'
+    | '/memberships'
+    | '/reset-password'
+    | '/reviews'
+    | '/stories'
+    | '/trainers'
+    | '/trial'
+    | '/_authenticated/account'
+    | '/_authenticated/dashboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
+  ContactRoute: typeof ContactRoute
+  FacilitiesRoute: typeof FacilitiesRoute
+  FaqRoute: typeof FaqRoute
+  MembershipsRoute: typeof MembershipsRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  ReviewsRoute: typeof ReviewsRoute
+  StoriesRoute: typeof StoriesRoute
+  TrainersRoute: typeof TrainersRoute
+  TrialRoute: typeof TrialRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +227,134 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/facilities': {
+      id: '/facilities'
+      path: '/facilities'
+      fullPath: '/facilities'
+      preLoaderRoute: typeof FacilitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/memberships': {
+      id: '/memberships'
+      path: '/memberships'
+      fullPath: '/memberships'
+      preLoaderRoute: typeof MembershipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stories': {
+      id: '/stories'
+      path: '/stories'
+      fullPath: '/stories'
+      preLoaderRoute: typeof StoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trainers': {
+      id: '/trainers'
+      path: '/trainers'
+      fullPath: '/trainers'
+      preLoaderRoute: typeof TrainersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trial': {
+      id: '/trial'
+      path: '/trial'
+      fullPath: '/trial'
+      preLoaderRoute: typeof TrialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/account': {
+      id: '/_authenticated/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AuthenticatedAccountRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAccountRoute: typeof AuthenticatedAccountRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAccountRoute: AuthenticatedAccountRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
+  ContactRoute: ContactRoute,
+  FacilitiesRoute: FacilitiesRoute,
+  FaqRoute: FaqRoute,
+  MembershipsRoute: MembershipsRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  ReviewsRoute: ReviewsRoute,
+  StoriesRoute: StoriesRoute,
+  TrainersRoute: TrainersRoute,
+  TrialRoute: TrialRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

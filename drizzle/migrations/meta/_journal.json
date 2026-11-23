@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1795402323106,
+      "tag": "0000_gym_foundation",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795402393595,
+      "tag": "0001_gym_management_attendance",
+      "breakpoints": true
+    }
+  ]
+}
